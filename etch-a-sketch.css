@@ -1,0 +1,16 @@
+:root {
+  --box-size: 58px; /*default*/
+}
+
+.container {
+  display: flex;
+  width: 960px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.grid-box {
+  width: var(--box-size);
+  height: var(--box-size);
+  background-color: lightgray;
+}
