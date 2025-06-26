@@ -50,11 +50,24 @@ button.addEventListener("click", () => {
     const square = document.createElement("div");
     square.classList.add("grid-box");
     container.appendChild(square);
-    square.addEventListener("mouseenter", (event) => {
-      event.target.style.backgroundColor = "green";
-    });
-    square.addEventListener("mouseleave", (event) => {
-      event.target.style.backgroundColor = "lightGreen";
+    square.dataset.darkness = 0;
+    square.addEventListener("mouseover", () => {
+      if (!square.dataset.color) {
+        let x = Math.floor(Math.random() * 256);
+        let y = Math.floor(Math.random() * 256);
+        let z = Math.floor(Math.random() * 256);
+        square.dataset.color = `${x}, ${y}, ${z}`;
+      }
+
+      let opacity = parseFloat(square.dataset.darkness);
+      if (opacity < 1) {
+        opacity += 0.1;
+        square.dataset.darkness = opacity.toFixed(1);
+      }
+
+      const [x, y, z] = square.dataset.color.split(",");
+
+      square.style.backgroundColor = `rgba(${x}, ${y}, ${z}, ${opacity})`;
     });
   }
 });
